@@ -3,6 +3,7 @@ Unipath==1.0
 dj-database-url==0.2.2
 dj-static==0.0.5
 gunicorn==18.0
+py_w3c==0.1.0
 static==0.4
 wsgiref==0.1.2
 psycopg2==2.5.1
