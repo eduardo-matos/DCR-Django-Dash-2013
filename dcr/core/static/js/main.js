@@ -18,10 +18,10 @@ $(function(){
 		 		type: "GET",
 		 		success: function(response){
 		 			$(".list-erros").html(response);
-		 			console.log(response);
 		 		}
 		 	});
     	}else{
+    		$(".msg-error").show("slow");
     		return;
 
     	}
