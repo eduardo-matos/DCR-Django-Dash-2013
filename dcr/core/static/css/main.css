@@ -427,6 +427,19 @@ textarea {
     padding-left:20px;
     width: 600px; 
 }
-
-
+.list-erros ul{
+    width: 100%;
+    float: left;
+    list-style:none;
+    padding: 0;
+}
+.warning, .error{
+    padding-left: 35px;
+}
+.warning{
+    background: url(../img/warning.png) no-repeat;   
+}
+.error{
+    background: url(../img/error.png) no-repeat;
+}
 
