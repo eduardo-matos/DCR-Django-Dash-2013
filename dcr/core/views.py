@@ -3,7 +3,10 @@ from django.shortcuts import render_to_response
 from py_w3c.validators.html.validator import HTMLValidator
 
 def home(request):
+    return render_to_response("core/index.html")
+
+def errors(request, url):
     vld = HTMLValidator()
-    vld.validate("http://icrach.com")
-# valid = urllib.urlopen('http://validator.w3.org/check?uri=http://icrach.com').info().getheader('x-w3c-validator-status') == 'Valid'
-    return render_to_response("core/index.html", {'errors': vld.errors})
+
+    vld.validate(url)
+    return render_to_response("core/lista-erro.html", {'errors': vld.errors})

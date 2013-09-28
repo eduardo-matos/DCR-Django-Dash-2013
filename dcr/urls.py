@@ -6,6 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'dcr.core.views.home', name='home'),
+    url(r'^errors/(?P<url>.*)/$', 'dcr.core.views.errors', name='errors'),
     # url(r'^dcr/', include('dcr.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

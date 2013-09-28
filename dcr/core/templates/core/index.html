@@ -30,17 +30,12 @@
             <h1 class="logo">DCR Recursive HTML Validator</h1>
             <div class="form-content">
                 <form action="" method="post" name="search-fuuckle" id="validate">
-                    <input type="text" class="url-to-validade" name="validarUrl" placeholder="Put your url here..."/>
+                    <input type="text" class="url-to-validade" name="validarUrl" id="validaUrlR" placeholder="Put your url here..."/>
                     <input class="do-validate" type="submit" name="doValidate" value="DO!"/>
                 </form>
             </div>
             <!-- Form Content -->
             <div class="list-erros none">
-                <ul>
-                    {% for error in errors %}
-                        <li class="error">{{ error.message }}</li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
         <!-- Content -->
