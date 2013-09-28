@@ -1,6 +1,13 @@
 <ul>
 	{% for error in errors %}
-        <li class="error">{{ error.explanation }}</li>
+        <li class="error">{{ error.message }}</li>
+        	<ul>
+   				<li>
+   					<pre>
+   						{{ error.explanation}}
+   					</pre>
+				</li>
+   			</ul>
     {% endfor %}
     <!-- Classe destina a warnings <li class="warning">Error The character encoding was not declared. Proceeding using windows-1252.</li> -->
 </ul>

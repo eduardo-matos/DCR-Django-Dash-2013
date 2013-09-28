@@ -435,6 +435,7 @@ textarea {
 }
 .warning, .error{
     padding-left: 35px;
+    line-height:33px;
 }
 .warning{
     background: url(../img/warning.png) no-repeat;   

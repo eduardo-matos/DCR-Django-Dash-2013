@@ -17,12 +17,13 @@ $(function(){
 		 		url: "/errors/" + encodeURIComponent(urlToValidate), 
 		 		type: "GET",
 		 		success: function(response){
-		 			$(".list-erros ul").html(response);
+		 			$(".list-erros").html(response);
+		 			console.log(response);
 		 		}
 		 	});
     	}else{
     		return;
-    		
+
     	}
 
 		$(".content").animate({
