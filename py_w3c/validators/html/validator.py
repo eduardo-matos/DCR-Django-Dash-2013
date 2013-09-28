@@ -32,7 +32,7 @@ class HTMLValidator(object):
         ''' sends request to the validator, if post_data is not empty, sends POST request, otherwise sends GET request. 
         Returns True if validation occurs, otherwise otherwise raises exception '''
         if not headers:
-            headers = {}
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; rv:21.0) Gecko/20130326 Firefox/21.0'}
         req = urllib2.Request(url, headers=headers, data=post_data)
         resp = urllib2.urlopen(req)
         self._process_response(resp.read())

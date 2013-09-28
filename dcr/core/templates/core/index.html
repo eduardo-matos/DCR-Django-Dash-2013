@@ -22,6 +22,8 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
+        {{ valid }}
+
         <!-- Add your site or application content here -->
     <div id="all-content">
         <div class="content">
@@ -35,8 +37,9 @@
             <!-- Form Content -->
             <div class="list-erros none">
                 <ul>
-                    <li>Error The character encoding was not declared. Proceeding using windows-1252.</li>
-                    <li>Line 6, Column 72: The document is not mappable to XML 1.0 due to two consecutive hyphens in a comment.</li>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
