@@ -24,7 +24,7 @@ class Validator(object):
 
         a = [anchor for anchor in self.anchors if urlparse(anchor).netloc and urlparse(anchor).netloc in self.url]
 
-        self.anchors = list(set(a))
+        self.anchors = list(set(a))[:self.threshold]
 
         for an in self.anchors:
             self._validator_w3c.validate(an)
