@@ -13,11 +13,14 @@ $(function(){
     	console.log(validaUrl);
 
     	if( validaUrl === true){
+    		var gif = $(".ajaxgif");
+ 			gif.show("slow");
     		$.ajax({
 		 		url: "/errors/" + encodeURIComponent(urlToValidate), 
 		 		type: "GET",
 		 		success: function(response){
 		 			$(".list-erros").html(response);
+		 			gif.hide("slow");
 		 		}
 		 	});
     	}else{

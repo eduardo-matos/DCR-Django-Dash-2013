@@ -443,4 +443,7 @@ textarea {
 .error{
     background: url(../img/error.png) no-repeat;
 }
-
+.ajaxgif{
+    width: 24px;
+    margin: 20px auto;
+}
