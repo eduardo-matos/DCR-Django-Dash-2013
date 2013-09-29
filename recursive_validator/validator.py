@@ -5,36 +5,53 @@ from pyquery import PyQuery as pq
 from urlparse import urlparse
 
 
-class Validator(object):
-    url = None
-    errors = None
-    warnings = None
-    anchors=[]
-    errors= {}
-    threshold = 3
+def validate(url, threshold=3):
+    url_list = set([url])
+    url_list_validated = set([])
+    errors = dict()
 
-    _validator_w3c = None
+    w3c_validator = HTMLValidator()
 
-    def __init__(self, url):
-        self.url = url
-        self._validator_w3c = HTMLValidator()
+    parsed_url = urlparse(url)
+    base_url = parsed_url.scheme + '://' + parsed_url.netloc
 
-        self.anchors = self._fetch_anchors()
-        self.anchors.append(self.url)
+    next_url = None
 
-        a = [anchor for anchor in self.anchors if urlparse(anchor).netloc and urlparse(anchor).netloc in self.url]
+    while len(url_list) > 0 and len(url_list_validated) < threshold:
+        next_url = url_list.pop()
 
-        self.anchors = list(set(a))[:self.threshold]
+        if next_url in url_list_validated:
+            continue
 
-        for an in self.anchors:
-            self._validator_w3c.validate(an)
-            self.errors[an] = self._validator_w3c.errors
+        # validate next url
+        w3c_validator.validate(next_url)
+        errors[next_url] = w3c_validator.errors
 
-    def _fetch_anchors(self):
-        d = pq(url=self.url)
+        # add it to validated
+        url_list_validated.add(next_url)
 
-        anchors = []
-        for anchor in d('a[href]'):
-            anchors.append(anchor.attrib['href'])
+        # fetch more urls
+        more_links = fetch_more_links(next_url, parsed_url)
 
-        return anchors
+        # normalize to correct domain
+        full_links = [base_url + path for path in more_links]
+
+        # add to list
+        for link in full_links:
+            url_list.add(link)
+
+    return errors
+
+def fetch_more_links(url, parsed_url):
+    d = pq(url=url)
+
+    anchors = []
+    for anchor in d('a[href]'):
+        href = anchor.attrib['href']
+
+        parsed_href = urlparse(href)
+
+        if (parsed_url.netloc == parsed_href.netloc or parsed_href.netloc is '') and '/' in parsed_href.path and '.pdf' not in parsed_href:
+            anchors.append(parsed_href.path) 
+
+    return anchors
